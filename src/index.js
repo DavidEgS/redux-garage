@@ -1,15 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import store from './app/store';
+import App from './containers/App';
 import { Provider } from 'react-redux';
+import rootReducer from './reducers/rootReducer';
+import { createStore, applyMiddleware } from 'redux';
 import * as serviceWorker from './serviceWorker';
+import { logger } from 'redux-logger';
+import reduxPromise from 'redux-promise';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory as history } from 'history';
+
+const garageName = 'Dave\'s Cars'
+const initialState ={
+  garage: garageName,
+  cars: []
+}
+
+const middlewares = applyMiddleware(logger, reduxPromise);
+const store = createStore(rootReducer, initialState, middlewares);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router history={history}>
+        <Switch>
+          <App />
+        </Switch>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
