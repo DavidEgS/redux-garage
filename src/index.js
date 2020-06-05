@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App';
+import CarsIndex from './containers/CarsIndex';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
 import { createStore, applyMiddleware } from 'redux';
 import * as serviceWorker from './serviceWorker';
 import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route,  Switch } from 'react-router-dom'; // add Redirect,
 import { createBrowserHistory as history } from 'history';
 
 const garageName = 'Dave\'s Cars'
@@ -25,7 +26,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
         <Switch>
-          <App />
+          <Route path="/" component={CarsIndex} />
         </Switch>
       </Router>
     </Provider>
