@@ -4,6 +4,7 @@ import './index.css';
 import './App.scss';
 import CarsIndex from './containers/CarsIndex';
 import CarsShow from './containers/CarsShow';
+import CarsForm from './containers/CarsForm';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
 import { createStore, applyMiddleware } from 'redux';
@@ -33,6 +34,7 @@ ReactDOM.render(
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={CarsIndex} />
+          <Route path="/cars/new" component={CarsForm} />
           <Route path="/cars/:id" component={CarsShow} />
         </Switch>
       </Router>

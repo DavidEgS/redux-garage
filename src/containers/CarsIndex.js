@@ -4,6 +4,7 @@ import { connect,  } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { setCars } from '../actions';
+import SideBar from '../components/SideBar'
 
 
 function mapDispatchToProps(dispatch) {
@@ -25,7 +26,12 @@ render() {
   })
 
   return(
-    <div>{renderCars}</div>
+    <div className="page">
+      <SideBar garage={this.props.garage} >
+        <Link to={``} > </Link>
+      </SideBar>
+      <div>{renderCars}</div>
+    </div>
   )
 
 
