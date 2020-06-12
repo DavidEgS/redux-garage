@@ -23,14 +23,16 @@ export function setCar(id) {
 }
 
 
-export function createCar(body, garage) {
-const request = fetch(`https://wagon-garage-api.herokuapp.com/${garage}/cars`, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify(body)
-}).then(response => response.json())
-return {
-type: CAR_CREATED,
-payload: request
-};
+export function createCar(body, callback) {
+  const request = fetch(`https://wagon-garage-api.herokuapp.com/davescars/cars`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  }).then(response => response.json())
+  .then(callback);
+
+  return {
+    type: CAR_CREATED,
+    payload: request
+  };
 }
